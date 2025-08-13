@@ -34,10 +34,10 @@ document.querySelectorAll('.fade-in').forEach(el => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(13, 17, 23, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+        navbar.style.background = 'rgba(42, 45, 45, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
     } else {
-        navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+        navbar.style.background = 'rgba(42, 45, 45, 0.95)';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -78,7 +78,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-10px) scale(1.02)';
     });
-    
+
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(-5px) scale(1)';
     });
@@ -93,7 +93,7 @@ function createParticles() {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(249,115,22,0.3);
+            background: rgba(232,236,239,0.3);
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
@@ -103,6 +103,18 @@ function createParticles() {
         hero.appendChild(particle);
     }
 }
+
+// Add CSS for particle animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes float {
+        0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
 
 // Initialize particles
 createParticles();
@@ -171,77 +183,3 @@ const statsSection = document.querySelector('.stats-section');
 if (statsSection) {
     statsObserver.observe(statsSection);
 }
-
-// Mobile menu toggle (if needed for future enhancement)
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-}
-
-// Add smooth hover effects to skill cards
-document.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.borderLeft = '5px solid #ea580c';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.borderLeft = '5px solid #f97316';
-    });
-});
-
-// Add loading state for external links
-document.querySelectorAll('a[target="_blank"]').forEach(link => {
-    link.addEventListener('click', function() {
-        const originalText = this.textContent;
-        this.textContent = 'Opening...';
-        setTimeout(() => {
-            this.textContent = originalText;
-        }, 2000);
-    });
-});
-
-// Performance optimization - lazy load animations
-const lazyAnimationObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-        }
-    });
-});
-
-// Initialize when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Add any initialization code here
-    console.log('Portfolio loaded successfully!');
-    
-    // Preload critical images or resources if needed
-    // This is where you'd add preloading logic
-});
-
-// Error handling for external resources
-window.addEventListener('error', function(e) {
-    console.log('Resource loading error:', e);
-    // Handle gracefully without breaking the site
-});
-
-// Add keyboard navigation support
-document.addEventListener('keydown', function(e) {
-    // ESC key to close any modals (if added in future)
-    if (e.key === 'Escape') {
-        // Close modal logic here
-    }
-    
-    // Arrow keys for navigation (optional enhancement)
-    if (e.key === 'ArrowUp' && e.ctrlKey) {
-        scrollToTop();
-    }
-});
-
-// Add print styles support
-window.addEventListener('beforeprint', function() {
-    document.body.classList.add('printing');
-});
-
-window.addEventListener('afterprint', function() {
-    document.body.classList.remove('printing');
-});
