@@ -34,10 +34,10 @@ document.querySelectorAll('.fade-in').forEach(el => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+        navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = 'rgba(13, 17, 23, 0.95)';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -93,7 +93,7 @@ function createParticles() {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(255,255,255,0.3);
+            background: rgba(249,115,22,0.3);
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
@@ -181,11 +181,11 @@ function toggleMobileMenu() {
 // Add smooth hover effects to skill cards
 document.querySelectorAll('.skill-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
-        this.style.borderLeft = '5px solid #ff9500';
+        this.style.borderLeft = '5px solid #ea580c';
     });
     
     card.addEventListener('mouseleave', function() {
-        this.style.borderLeft = '5px solid #0066cc';
+        this.style.borderLeft = '5px solid #f97316';
     });
 });
 
