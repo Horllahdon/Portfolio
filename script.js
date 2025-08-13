@@ -12,7 +12,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for fade-in animations
+// Intersection Observer for fade-in animations - FIXED VERSION
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -22,12 +22,20 @@ const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
         }
     });
 }, observerOptions);
 
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
+// Make all content visible immediately and then observe for animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Ensure all content is visible first
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        observer.observe(el);
+    });
 });
 
 // Navbar background change on scroll
@@ -186,6 +194,15 @@ if (statsSection) {
 
 // Profile picture error handling and fallback - CORRECTION POINT
 document.addEventListener('DOMContentLoaded', function() {
+    // IMMEDIATE CONTENT VISIBILITY FIX
+    const allElements = document.querySelectorAll('.stat-item, .skill-card, .project-card, .timeline-item, .contact-card, .fade-in');
+    allElements.forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        el.style.visibility = 'visible';
+        el.style.display = el.style.display || 'block';
+    });
+
     const profileImg = document.getElementById('profileImg');
     const placeholder = document.querySelector('.profile-placeholder');
     
@@ -193,19 +210,19 @@ document.addEventListener('DOMContentLoaded', function() {
         profileImg.addEventListener('error', function() {
             // If image fails to load, show placeholder
             this.style.display = 'none';
-            placeholder.style.opacity = '1';
+            if (placeholder) placeholder.style.opacity = '1';
         });
         
         profileImg.addEventListener('load', function() {
             // If image loads successfully, hide placeholder
-            placeholder.style.opacity = '0';
+            if (placeholder) placeholder.style.opacity = '0';
         });
         
         // Check if image source exists
         if (!profileImg.src || profileImg.src.includes('profile.jpg')) {
             // If no valid source, show placeholder
             profileImg.style.display = 'none';
-            placeholder.style.opacity = '1';
+            if (placeholder) placeholder.style.opacity = '1';
         }
     }
 });
