@@ -34,10 +34,10 @@ document.querySelectorAll('.fade-in').forEach(el => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(42, 45, 45, 0.98)';
+        navbar.style.background = 'rgba(245, 246, 245, 0.98)';
         navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
     } else {
-        navbar.style.background = 'rgba(42, 45, 45, 0.95)';
+        navbar.style.background = 'rgba(245, 246, 245, 0.95)';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -93,7 +93,7 @@ function createParticles() {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(232,236,239,0.3);
+            background: rgba(245,246,245,0.3);
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
