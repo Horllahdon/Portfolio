@@ -34,10 +34,10 @@ document.querySelectorAll('.fade-in').forEach(el => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(245, 246, 245, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+        navbar.style.background = 'rgba(44, 62, 80, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
     } else {
-        navbar.style.background = 'rgba(245, 246, 245, 0.95)';
+        navbar.style.background = 'rgba(44, 62, 80, 0.95)';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -78,7 +78,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-10px) scale(1.02)';
     });
-
+    
     card.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(-5px) scale(1)';
     });
@@ -93,7 +93,7 @@ function createParticles() {
             position: absolute;
             width: 2px;
             height: 2px;
-            background: rgba(245,246,245,0.3);
+            background: rgba(212, 175, 55, 0.3);
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
@@ -183,3 +183,29 @@ const statsSection = document.querySelector('.stats-section');
 if (statsSection) {
     statsObserver.observe(statsSection);
 }
+
+// Profile picture error handling and fallback - CORRECTION POINT
+document.addEventListener('DOMContentLoaded', function() {
+    const profileImg = document.getElementById('profileImg');
+    const placeholder = document.querySelector('.profile-placeholder');
+    
+    if (profileImg) {
+        profileImg.addEventListener('error', function() {
+            // If image fails to load, show placeholder
+            this.style.display = 'none';
+            placeholder.style.opacity = '1';
+        });
+        
+        profileImg.addEventListener('load', function() {
+            // If image loads successfully, hide placeholder
+            placeholder.style.opacity = '0';
+        });
+        
+        // Check if image source exists
+        if (!profileImg.src || profileImg.src.includes('profile.jpg')) {
+            // If no valid source, show placeholder
+            profileImg.style.display = 'none';
+            placeholder.style.opacity = '1';
+        }
+    }
+});
