@@ -12,7 +12,420 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for fade-in animations - FIXED VERSION
+// Project Modal Content Data
+const projectData = {
+    'b2b-lead-generation': {
+        title: 'B2B Lead Generation Database - Project Details',
+        content: `
+            <h3>Project Overview</h3>
+            <p>Comprehensive B2B lead generation project utilizing Apollo.io premium database to deliver high-quality, verified contacts across multiple industry verticals.</p>
+            
+            <h3>Key Deliverables</h3>
+            <ul>
+                <li>1,000+ verified B2B contacts with 95%+ email accuracy</li>
+                <li>500+ C-Suite executives (CEOs, CTOs, CMOs, VPs)</li>
+                <li>Coverage across 9 major industry verticals</li>
+                <li>Complete contact profiles with LinkedIn URLs</li>
+                <li>Industry-specific segmentation and categorization</li>
+                <li>Email verification using multiple validation tools</li>
+            </ul>
+
+            <h3>Industries Covered</h3>
+            <ul>
+                <li>Technology & Software</li>
+                <li>Healthcare & Medical</li>
+                <li>Financial Services</li>
+                <li>Manufacturing</li>
+                <li>Professional Services</li>
+                <li>E-commerce & Retail</li>
+                <li>Real Estate</li>
+                <li>Education</li>
+                <li>Marketing & Advertising</li>
+            </ul>
+
+            <h3>Tools & Technologies Used</h3>
+            <ul>
+                <li>Apollo.io Premium Database</li>
+                <li>Email verification tools (Hunter.io, Clearbit)</li>
+                <li>LinkedIn Sales Navigator</li>
+                <li>Google Sheets for data organization</li>
+                <li>Advanced filtering and search techniques</li>
+            </ul>
+
+            <h3>Quality Assurance Process</h3>
+            <ul>
+                <li>Multi-stage email verification process</li>
+                <li>Manual verification of executive positions</li>
+                <li>LinkedIn profile cross-referencing</li>
+                <li>Company information validation</li>
+                <li>Duplicate removal and data cleaning</li>
+            </ul>
+        `
+    },
+    'job-application-system': {
+        title: 'Automated Job Application System - Case Study',
+        content: `
+            <h3>Client Challenge</h3>
+            <p>Isabella Gonzalez needed to streamline her job application process while maintaining personalization and tracking accuracy. Manual applications were time-consuming and difficult to track effectively.</p>
+            
+            <h3>Solution Implemented</h3>
+            <ul>
+                <li>Automated application workflow across multiple job platforms</li>
+                <li>Personalized cover letter and resume customization system</li>
+                <li>Comprehensive tracking spreadsheet with status updates</li>
+                <li>Weekly reporting and analytics dashboard</li>
+                <li>Follow-up reminder system</li>
+            </ul>
+
+            <h3>Platforms Integrated</h3>
+            <ul>
+                <li>LinkedIn Jobs</li>
+                <li>Indeed</li>
+                <li>Glassdoor</li>
+                <li>ZipRecruiter</li>
+                <li>Company career pages</li>
+                <li>Industry-specific job boards</li>
+            </ul>
+
+            <h3>Results Achieved</h3>
+            <ul>
+                <li>150+ weekly applications consistently submitted</li>
+                <li>30% reduction in application time</li>
+                <li>100% tracking accuracy maintained</li>
+                <li>Improved response rate due to personalization</li>
+                <li>Better interview scheduling management</li>
+            </ul>
+
+            <h3>Impact & Outcomes</h3>
+            <ul>
+                <li>Increased job application volume by 300%</li>
+                <li>Enhanced application quality through template optimization</li>
+                <li>Reduced administrative burden by 4 hours per week</li>
+                <li>Improved job search strategy through data analytics</li>
+            </ul>
+        `
+    },
+    'job-application-methodology': {
+        title: 'Job Application Automation - Methodology',
+        content: `
+            <h3>Phase 1: Assessment & Planning</h3>
+            <ul>
+                <li>Current process analysis and bottleneck identification</li>
+                <li>Platform research and selection</li>
+                <li>Template creation for resumes and cover letters</li>
+                <li>Tracking system design and implementation</li>
+            </ul>
+
+            <h3>Phase 2: Automation Setup</h3>
+            <ul>
+                <li>Browser automation tools configuration</li>
+                <li>Form auto-fill setup for common application fields</li>
+                <li>Document management system organization</li>
+                <li>Scheduling and reminder system implementation</li>
+            </ul>
+
+            <h3>Phase 3: Quality Control</h3>
+            <ul>
+                <li>Application review process establishment</li>
+                <li>Error detection and correction protocols</li>
+                <li>A/B testing for application effectiveness</li>
+                <li>Continuous optimization based on results</li>
+            </ul>
+
+            <h3>Tools & Technologies</h3>
+            <ul>
+                <li>Browser automation (Selenium WebDriver)</li>
+                <li>Google Sheets API for tracking</li>
+                <li>Gmail API for email management</li>
+                <li>Calendar integration for scheduling</li>
+                <li>Data validation and error handling</li>
+            </ul>
+
+            <h3>Success Metrics</h3>
+            <ul>
+                <li>Application volume increase</li>
+                <li>Time savings per application</li>
+                <li>Response rate improvement</li>
+                <li>Interview conversion rate</li>
+                <li>Overall job search efficiency</li>
+            </ul>
+        `
+    },
+    'fundraising-event': {
+        title: 'Fundraising Event Coordination - Event Details',
+        content: `
+            <h3>Event Overview</h3>
+            <p>High-profile fundraising event for Supportifly with $500K campaign goal, requiring comprehensive coordination of venue, catering, stakeholder management, and logistical planning.</p>
+            
+            <h3>Event Specifications</h3>
+            <ul>
+                <li>Target audience: 200+ attendees</li>
+                <li>Duration: Full-day event (8 hours)</li>
+                <li>Multiple session formats (presentations, networking, dinner)</li>
+                <li>VIP donor recognition program</li>
+                <li>Live streaming capabilities for remote participants</li>
+            </ul>
+
+            <h3>Coordination Responsibilities</h3>
+            <ul>
+                <li>Venue selection and contract negotiation</li>
+                <li>Catering menu planning and dietary accommodations</li>
+                <li>Audio/visual equipment setup and testing</li>
+                <li>Guest registration and check-in system</li>
+                <li>Speaker coordination and presentation management</li>
+                <li>Photography and videography arrangements</li>
+            </ul>
+
+            <h3>Stakeholder Management</h3>
+            <ul>
+                <li>Board member communication and updates</li>
+                <li>Donor relations and VIP coordination</li>
+                <li>Vendor management and timeline coordination</li>
+                <li>Volunteer recruitment and training</li>
+                <li>Media relations and press coverage</li>
+            </ul>
+
+            <h3>Results & Impact</h3>
+            <ul>
+                <li>Successfully exceeded $500K fundraising goal by 15%</li>
+                <li>100% on-time delivery of all event components</li>
+                <li>Zero major incidents or logistical issues</li>
+                <li>98% attendee satisfaction rate</li>
+                <li>Secured commitments for future donations</li>
+            </ul>
+        `
+    },
+    'planning-process': {
+        title: 'Event Planning Process & Methodology',
+        content: `
+            <h3>Pre-Planning Phase (8 weeks before)</h3>
+            <ul>
+                <li>Goal setting and budget allocation</li>
+                <li>Venue research and site visits</li>
+                <li>Save-the-date distribution</li>
+                <li>Initial vendor outreach</li>
+                <li>Team role assignments</li>
+            </ul>
+
+            <h3>Detailed Planning Phase (6 weeks before)</h3>
+            <ul>
+                <li>Final venue booking and contract execution</li>
+                <li>Catering menu finalization</li>
+                <li>Invitation design and distribution</li>
+                <li>Registration system setup</li>
+                <li>Speaker confirmations and content review</li>
+            </ul>
+
+            <h3>Execution Phase (4 weeks before)</h3>
+            <ul>
+                <li>Final headcount confirmations</li>
+                <li>Vendor final briefings and walkthroughs</li>
+                <li>Volunteer training sessions</li>
+                <li>Contingency planning and backup arrangements</li>
+                <li>Day-of timeline creation and distribution</li>
+            </ul>
+
+            <h3>Day-of-Event Management</h3>
+            <ul>
+                <li>Early morning venue setup supervision</li>
+                <li>Real-time coordination and problem-solving</li>
+                <li>Guest experience management</li>
+                <li>Timeline adherence and adjustment</li>
+                <li>Post-event breakdown coordination</li>
+            </ul>
+
+            <h3>Post-Event Activities</h3>
+            <ul>
+                <li>Thank you notes and follow-up communications</li>
+                <li>Final financial reconciliation</li>
+                <li>Vendor feedback and payment processing</li>
+                <li>Event success analysis and reporting</li>
+                <li>Lessons learned documentation</li>
+            </ul>
+        `
+    },
+    'it-infrastructure': {
+        title: 'IT Infrastructure Optimization - Technical Details',
+        content: `
+            <h3>System Architecture</h3>
+            <p>Comprehensive infrastructure overhaul for FutureMinds Development Initiative, serving 8+ users with automated backup systems and network optimization.</p>
+            
+            <h3>Backup System Implementation</h3>
+            <ul>
+                <li>Automated daily, weekly, and monthly backup schedules</li>
+                <li>Cloud storage integration (Google Drive, Dropbox Business)</li>
+                <li>Local redundancy with external drive rotation</li>
+                <li>Database backup with point-in-time recovery</li>
+                <li>File versioning and retention policies</li>
+                <li>Automated backup verification and integrity checks</li>
+            </ul>
+
+            <h3>Network Infrastructure</h3>
+            <ul>
+                <li>Network topology redesign for optimal performance</li>
+                <li>Ethernet and Wi-Fi infrastructure upgrade</li>
+                <li>VLAN segmentation for security and performance</li>
+                <li>Bandwidth monitoring and optimization</li>
+                <li>Quality of Service (QoS) implementation</li>
+                <li>Network security protocols and firewall configuration</li>
+            </ul>
+
+            <h3>Server Configuration</h3>
+            <ul>
+                <li>Windows Server 2019 deployment and configuration</li>
+                <li>Active Directory setup for user management</li>
+                <li>File server with shared drive organization</li>
+                <li>Print server for centralized printing</li>
+                <li>Email server configuration and management</li>
+                <li>Remote access VPN setup</li>
+            </ul>
+
+            <h3>Security Measures</h3>
+            <ul>
+                <li>Endpoint protection deployment across all workstations</li>
+                <li>Regular security updates and patch management</li>
+                <li>User access control and privilege management</li>
+                <li>Network monitoring and intrusion detection</li>
+                <li>Data encryption for sensitive information</li>
+                <li>Security awareness training for staff</li>
+            </ul>
+        `
+    },
+    'it-results': {
+        title: 'IT Infrastructure Optimization - Results & Impact',
+        content: `
+            <h3>Performance Improvements</h3>
+            <ul>
+                <li>99.9% backup success rate achieved</li>
+                <li>60% reduction in data recovery time</li>
+                <li>40% decrease in network-related service interruptions</li>
+                <li>50% improvement in file access speeds</li>
+                <li>25% increase in overall system reliability</li>
+            </ul>
+
+            <h3>Operational Benefits</h3>
+            <ul>
+                <li>Eliminated manual backup processes</li>
+                <li>Reduced IT support tickets by 45%</li>
+                <li>Improved staff productivity through better system performance</li>
+                <li>Enhanced data security and compliance</li>
+                <li>Streamlined remote work capabilities</li>
+            </ul>
+
+            <h3>User Experience Enhancements</h3>
+            <ul>
+                <li>Faster login times and application loading</li>
+                <li>Improved file sharing and collaboration</li>
+                <li>Reduced downtime and system interruptions</li>
+                <li>Better print management and queue handling</li>
+                <li>Enhanced email performance and reliability</li>
+            </ul>
+
+            <h3>Cost Savings</h3>
+            <ul>
+                <li>30% reduction in IT maintenance costs</li>
+                <li>Decreased hardware replacement frequency</li>
+                <li>Reduced external IT support requirements</li>
+                <li>Lower data loss risk and recovery costs</li>
+                <li>Improved energy efficiency</li>
+            </ul>
+
+            <h3>Long-term Impact</h3>
+            <ul>
+                <li>Scalable infrastructure ready for organizational growth</li>
+                <li>Established best practices for ongoing maintenance</li>
+                <li>Improved disaster recovery capabilities</li>
+                <li>Enhanced cybersecurity posture</li>
+                <li>Foundation for future technology upgrades</li>
+            </ul>
+        `
+    }
+};
+
+// Project Modal Functions
+function openProjectModal(projectId) {
+    const modal = document.getElementById('projectModal');
+    const modalContent = document.getElementById('modalContent');
+    
+    if (projectData[projectId]) {
+        modalContent.innerHTML = `
+            <h2>${projectData[projectId].title}</h2>
+            ${projectData[projectId].content}
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #34495e;">
+                <h3>Need More Information?</h3>
+                <p>Contact me directly for detailed project documentation, code samples, or to discuss similar projects for your organization.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                    <a href="mailto:olamilekan9194@gmail.com?subject=Project Inquiry - ${projectData[projectId].title}" 
+                       style="background: linear-gradient(45deg, #d4af37, #b8860b); color: #2c3e50; padding: 0.75rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600;">
+                       Request Details
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID" target="_blank"
+                       style="background: transparent; color: #d4af37; border: 2px solid #d4af37; padding: 0.75rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600;">
+                       View Files
+                    </a>
+                </div>
+            </div>
+        `;
+    } else {
+        modalContent.innerHTML = `
+            <h2>Project Information</h2>
+            <p>Detailed information for this project is being updated. Please contact me directly for more details.</p>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="mailto:olamilekan9194@gmail.com?subject=Project Inquiry" 
+                   style="background: linear-gradient(45deg, #d4af37, #b8860b); color: #2c3e50; padding: 1rem 2rem; border-radius: 25px; text-decoration: none; font-weight: 600;">
+                   Contact Me
+                </a>
+            </div>
+        `;
+    }
+    
+    modal.style.display = 'block';
+}
+
+// Modal close functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.querySelector('.close');
+    
+    // Close modal when clicking the X
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+    
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+// Contact Form Functionality
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    // Create email body
+    const emailBody = `Name: ${firstName} ${lastName}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
+    
+    // Create mailto link
+    const mailtoLink = `mailto:olamilekan9194@gmail.com?subject=Portfolio Contact Form - ${firstName} ${lastName}&body=${emailBody}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    alert('Thank you for your message! Your email client should open now. If not, please email me directly at olamilekan9194@gmail.com');
+    
+    // Reset form
+    this.reset();
+});
+
+// Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -34,6 +447,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.fade-in').forEach(el => {
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
+        el.style.visibility = 'visible';
+        el.style.display = el.style.display || 'block';
         observer.observe(el);
     });
 });
@@ -70,14 +485,12 @@ const titles = [
 let currentTitle = 0;
 
 function changeTitle() {
-    if (subtitle) {
-        subtitle.style.opacity = '0';
-        setTimeout(() => {
-            currentTitle = (currentTitle + 1) % titles.length;
-            subtitle.textContent = titles[currentTitle];
-            subtitle.style.opacity = '1';
-        }, 500);
-    }
+    subtitle.style.opacity = '0';
+    setTimeout(() => {
+        currentTitle = (currentTitle + 1) % titles.length;
+        subtitle.textContent = titles[currentTitle];
+        subtitle.style.opacity = '1';
+    }, 500);
 }
 
 // Change title every 4 seconds
@@ -94,526 +507,23 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// PROJECT DETAILS FUNCTIONALITY
-const projectDetails = {
-    'b2b-details': {
-        title: 'B2B Lead Generation - Project Details',
-        content: `
-            <div class="project-detail">
-                <h3><i class="fas fa-bullseye"></i> Project Overview</h3>
-                <p>Comprehensive B2B lead generation project utilizing Apollo.io premium database to deliver high-quality, verified contacts across multiple industry verticals.</p>
-                
-                <h4>Key Deliverables:</h4>
-                <ul>
-                    <li>1,000+ verified B2B contacts with 95%+ email accuracy</li>
-                    <li>500+ C-Suite executives and decision makers</li>
-                    <li>Comprehensive data across 9 major industry verticals</li>
-                    <li>Complete contact information including email, phone, LinkedIn profiles</li>
-                    <li>Company information with employee count and revenue data</li>
-                </ul>
-
-                <h4>Industries Covered:</h4>
-                <div class="industry-tags">
-                    <span class="industry-tag">Technology</span>
-                    <span class="industry-tag">Healthcare</span>
-                    <span class="industry-tag">Finance</span>
-                    <span class="industry-tag">Manufacturing</span>
-                    <span class="industry-tag">Retail</span>
-                    <span class="industry-tag">Real Estate</span>
-                    <span class="industry-tag">Professional Services</span>
-                    <span class="industry-tag">Education</span>
-                    <span class="industry-tag">Non-Profit</span>
-                </div>
-
-                <h4>Data Quality Assurance:</h4>
-                <ul>
-                    <li>Email verification using Hunter.io and ZeroBounce</li>
-                    <li>LinkedIn profile verification</li>
-                    <li>Company information cross-reference</li>
-                    <li>GDPR compliance verification</li>
-                    <li>Duplicate removal and data cleansing</li>
-                </ul>
-
-                <div class="cta-section">
-                    <p><strong>Ready to scale your lead generation?</strong></p>
-                    <a href="#talk-to-me" class="modal-cta-btn">Get Similar Results</a>
-                </div>
-            </div>
-        `
-    },
-    'job-case-study': {
-        title: 'Automated Job Application System - Case Study',
-        content: `
-            <div class="project-detail">
-                <h3><i class="fas fa-robot"></i> Case Study Overview</h3>
-                <p><strong>Client:</strong> Isabella Gonzalez - Job Seeker transitioning careers</p>
-                <p><strong>Challenge:</strong> Time-consuming manual job application process affecting job search efficiency</p>
-                
-                <h4>The Challenge:</h4>
-                <ul>
-                    <li>Manual application process taking 4+ hours daily</li>
-                    <li>Difficulty tracking applications across multiple platforms</li>
-                    <li>Inconsistent application quality and follow-up</li>
-                    <li>Limited time for interview preparation and networking</li>
-                </ul>
-
-                <h4>Solution Implemented:</h4>
-                <ul>
-                    <li>Developed automated workflow using Zapier and Google Sheets</li>
-                    <li>Created standardized application templates</li>
-                    <li>Implemented comprehensive tracking system</li>
-                    <li>Set up automated follow-up sequences</li>
-                    <li>Integrated calendar scheduling for interviews</li>
-                </ul>
-
-                <h4>Results Achieved:</h4>
-                <div class="results-grid">
-                    <div class="result-item">
-                        <div class="result-number">150+</div>
-                        <div class="result-label">Weekly Applications</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">30%</div>
-                        <div class="result-label">Time Reduction</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">40%</div>
-                        <div class="result-label">Response Rate Increase</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">100%</div>
-                        <div class="result-label">Application Tracking</div>
-                    </div>
-                </div>
-
-                <div class="cta-section">
-                    <p><strong>Need similar automation for your job search?</strong></p>
-                    <a href="#talk-to-me" class="modal-cta-btn">Automate Your Applications</a>
-                </div>
-            </div>
-        `
-    },
-    'job-methodology': {
-        title: 'Automated Job Application - Methodology',
-        content: `
-            <div class="project-detail">
-                <h3><i class="fas fa-cogs"></i> Implementation Methodology</h3>
-                
-                <h4>Phase 1: Analysis & Planning (Week 1)</h4>
-                <ul>
-                    <li>Analyzed current application process and time tracking</li>
-                    <li>Identified key job boards and application requirements</li>
-                    <li>Mapped client's career goals and target positions</li>
-                    <li>Created standardized resume and cover letter templates</li>
-                </ul>
-
-                <h4>Phase 2: System Development (Week 2-3)</h4>
-                <ul>
-                    <li>Set up Google Sheets tracking system with automated formulas</li>
-                    <li>Created Zapier workflows for job board integrations</li>
-                    <li>Developed email templates for different job types</li>
-                    <li>Implemented automated calendar scheduling</li>
-                    <li>Created follow-up sequence automation</li>
-                </ul>
-
-                <h4>Phase 3: Testing & Optimization (Week 4)</h4>
-                <ul>
-                    <li>Conducted pilot testing with 50 applications</li>
-                    <li>Refined templates based on response rates</li>
-                    <li>Optimized automation triggers and workflows</li>
-                    <li>Created training documentation for client</li>
-                </ul>
-
-                <h4>Tools & Technologies Used:</h4>
-                <div class="tools-grid">
-                    <span class="tool-tag">Google Sheets</span>
-                    <span class="tool-tag">Zapier</span>
-                     <span class="tool-tag">Gmail</span>
-                    <span class="tool-tag">Google Calendar</span>
-                    <span class="tool-tag">Indeed API</span>
-                    <span class="tool-tag">LinkedIn Job API</span>
-                </div>
-
-                <h4>Ongoing Support & Maintenance:</h4>
-                <ul>
-                    <li>Weekly performance reviews and optimization</li>
-                    <li>Monthly template updates based on industry trends</li>
-                    <li>Continuous monitoring of application success rates</li>
-                    <li>Regular system updates and bug fixes</li>
-                </ul>
-
-                <div class="cta-section">
-                    <p><strong>Want to implement similar automation?</strong></p>
-                    <a href="#talk-to-me" class="modal-cta-btn">Discuss Your Project</a>
-                </div>
-            </div>
-        `
-    },
-    'event-details': {
-        title: 'Fundraising Event Coordination - Event Details',
-        content: `
-            <div class="project-detail">
-                <h3><i class="fas fa-calendar-alt"></i> Event Overview</h3>
-                <p><strong>Client:</strong> Supportifly - Non-profit Organization</p>
-                <p><strong>Event:</strong> Annual Fundraising Gala 2024</p>
-                <p><strong>Goal:</strong> $500K fundraising target with 15% increase from previous year</p>
-                
-                <h4>Event Specifications:</h4>
-                <ul>
-                    <li><strong>Venue:</strong> Grand Ballroom, Downtown Conference Center</li>
-                    <li><strong>Capacity:</strong> 300 guests including donors, sponsors, and VIPs</li>
-                    <li><strong>Duration:</strong> 4-hour evening event with dinner and entertainment</li>
-                    <li><strong>Theme:</strong> "Building Bridges, Changing Lives"</li>
-                </ul>
-
-                <h4>Logistics Coordination:</h4>
-                <ul>
-                    <li>Venue selection and contract negotiation</li>
-                    <li>Catering coordination for 300 guests with dietary accommodations</li>
-                    <li>Entertainment booking and technical requirements</li>
-                    <li>Registration system setup and guest management</li>
-                    <li>Sponsorship package development and management</li>
-                    <li>Marketing material design and distribution</li>
-                </ul>
-
-                <h4>Stakeholder Management:</h4>
-                <ul>
-                    <li>6 team members across different departments</li>
-                    <li>15+ major sponsors and corporate partners</li>
-                    <li>Board of directors and executive committee</li>
-                    <li>External vendors and service providers</li>
-                    <li>Media representatives and photographers</li>
-                </ul>
-
-                <h4>Event Outcomes:</h4>
-                <div class="results-grid">
-                    <div class="result-item">
-                        <div class="result-number">$485K</div>
-                        <div class="result-label">Total Raised</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">280</div>
-                        <div class="result-label">Attendees</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">97%</div>
-                        <div class="result-label">Goal Achievement</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">100%</div>
-                        <div class="result-label">On-Time Execution</div>
-                    </div>
-                </div>
-
-                <div class="cta-section">
-                    <p><strong>Planning a corporate event or fundraiser?</strong></p>
-                    <a href="#talk-to-me" class="modal-cta-btn">Plan Your Event</a>
-                </div>
-            </div>
-        `
-    },
-    'planning-process': {
-        title: 'Fundraising Event - Planning Process',
-        content: `
-            <div class="project-detail">
-                <h3><i class="fas fa-tasks"></i> Comprehensive Planning Process</h3>
-                
-                <h4>Phase 1: Strategic Planning (8 weeks before)</h4>
-                <ul>
-                    <li>Stakeholder meetings to define event goals and objectives</li>
-                    <li>Budget development and approval process</li>
-                    <li>Venue research, site visits, and contract negotiations</li>
-                    <li>Initial sponsor outreach and package development</li>
-                    <li>Event timeline and milestone planning</li>
-                </ul>
-
-                <h4>Phase 2: Coordination & Setup (6 weeks before)</h4>
-                <ul>
-                    <li>Vendor selection and contract management</li>
-                    <li>Marketing campaign launch and social media strategy</li>
-                    <li>Registration system implementation</li>
-                    <li>Menu planning and dietary accommodation management</li>
-                    <li>Entertainment booking and technical requirements</li>
-                </ul>
-
-                <h4>Phase 3: Final Preparations (2 weeks before)</h4>
-                <ul>
-                    <li>Final headcount confirmation and seating arrangements</li>
-                    <li>Rehearsal coordination and script preparation</li>
-                    <li>Gift bag preparation and sponsor recognition materials</li>
-                    <li>Staff briefing and volunteer coordination</li>
-                    <li>Contingency planning and risk assessment</li>
-                </ul>
-
-                <h4>Meeting Management System:</h4>
-                <ul>
-                    <li><strong>Weekly Planning Meetings:</strong> Core team progress updates</li>
-                    <li><strong>Bi-weekly Stakeholder Updates:</strong> Board and sponsor communications</li>
-                    <li><strong>Vendor Check-ins:</strong> Regular progress monitoring</li>
-                    <li><strong>Emergency Protocols:</strong> 24/7 communication channels</li>
-                </ul>
-
-                <h4>Project Management Tools:</h4>
-                <div class="tools-grid">
-                    <span class="tool-tag">Trello</span>
-                    <span class="tool-tag">Google Workspace</span>
-                    <span class="tool-tag">Eventbrite</span>
-                    <span class="tool-tag">Slack</span>
-                    <span class="tool-tag">Canva</span>
-                    <span class="tool-tag">Zoom</span>
-                </div>
-
-                <div class="cta-section">
-                    <p><strong>Need expert event coordination?</strong></p>
-                    <a href="#talk-to-me" class="modal-cta-btn">Start Planning</a>
-                </div>
-            </div>
-        `
-    },
-    'tech-details': {
-        title: 'IT Infrastructure Optimization - Technical Details',
-        content: `
-            <div class="project-detail">
-                <h3><i class="fas fa-server"></i> Technical Implementation</h3>
-                <p><strong>Client:</strong> FutureMinds Development Initiative</p>
-                <p><strong>Infrastructure:</strong> 8+ users, multiple workstations, shared network resources</p>
-                
-                <h4>Automated Backup System:</h4>
-                <ul>
-                    <li><strong>Solution:</strong> Veeam Backup & Replication with cloud integration</li>
-                    <li><strong>Schedule:</strong> Daily incremental, weekly full backups</li>
-                    <li><strong>Storage:</strong> Local NAS + Google Drive Business for redundancy</li>
-                    <li><strong>Recovery Time:</strong> Reduced from 4 hours to 24 minutes</li>
-                    <li><strong>Success Rate:</strong> 99.9% backup completion rate</li>
-                </ul>
-
-                <h4>Network Infrastructure Management:</h4>
-                <ul>
-                    <li>Cisco managed switches with VLAN segmentation</li>
-                    <li>Ubiquiti UniFi access points for wireless coverage</li>
-                    <li>pfSense firewall with intrusion detection</li>
-                    <li>Network monitoring using PRTG Network Monitor</li>
-                    <li>Quality of Service (QoS) implementation</li>
-                </ul>
-
-                <h4>System Administration Tasks:</h4>
-                <ul>
-                    <li>Windows Server 2019 domain controller setup</li>
-                    <li>Group Policy management for security compliance</li>
-                    <li>User account and permission management</li>
-                    <li>Software deployment and patch management</li>
-                    <li>Antivirus and security policy enforcement</li>
-                </ul>
-
-                <h4>Performance Improvements:</h4>
-                <div class="results-grid">
-                    <div class="result-item">
-                        <div class="result-number">99.9%</div>
-                        <div class="result-label">Backup Success</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">40%</div>
-                        <div class="result-label">Fewer Interruptions</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">60%</div>
-                        <div class="result-label">Faster Recovery</div>
-                    </div>
-                    <div class="result-item">
-                        <div class="result-number">24/7</div>
-                        <div class="result-label">System Monitoring</div>
-                    </div>
-                </div>
-
-                <div class="cta-section">
-                    <p><strong>Need IT infrastructure optimization?</strong></p>
-                    <a href="#talk-to-me" class="modal-cta-btn">Optimize Your Systems</a>
-                </div>
-            </div>
-        `
-    },
-    'it-results': {
-        title: 'IT Infrastructure Optimization - Results & Impact',
-        content: `
-            <div class="project-detail">
-                <h3><i class="fas fa-chart-line"></i> Project Results & Business Impact</h3>
-                
-                <h4>Quantifiable Improvements:</h4>
-                <ul>
-                    <li><strong>System Downtime:</strong> Reduced from 8 hours/month to 1.2 hours/month</li>
-                    <li><strong>Backup Failures:</strong> Decreased from 15% to 0.1% failure rate</li>
-                    <li><strong>Data Recovery Time:</strong> Improved from 4 hours to 24 minutes average</li>
-                    <li><strong>Network Performance:</strong> 35% increase in data transfer speeds</li>
-                    <li><strong>Security Incidents:</strong> Zero breaches during implementation period</li>
-                </ul>
-
-                <h4>User Training & Adoption:</h4>
-                <ul>
-                    <li>Trained 6+ staff members on new backup procedures</li>
-                    <li>Created comprehensive documentation and SOPs</li>
-                    <li>Established IT helpdesk procedures</li>
-                    <li>Implemented user feedback system</li>
-                    <li>Achieved 100% user adoption within 3 weeks</li>
-                </ul>
-
-                <h4>Cost Savings Achieved:</h4>
-                <ul>
-                    <li><strong>Reduced IT Support Costs:</strong> 45% decrease in external support needs</li>
-                    <li><strong>Hardware Longevity:</strong> Extended equipment lifespan by 2+ years</li>
-                    <li><strong>Productivity Gains:</strong> 25% improvement in daily operations</li>
-                    <li><strong>Data Loss Prevention:</strong> Estimated $50K+ in potential loss avoidance</li>
-                </ul>
-
-                <h4>Long-term Benefits:</h4>
-                <ul>
-                    <li>Scalable infrastructure supporting 50% growth</li>
-                    <li>Improved regulatory compliance and data protection</li>
-                    <li>Enhanced disaster recovery capabilities</li>
-                    <li>Reduced dependency on external IT consultants</li>
-                    <li>Foundation for digital transformation initiatives</li>
-                </ul>
-
-                <h4>Client Testimonial:</h4>
-                <blockquote>
-                    "Nurudeen's IT infrastructure optimization transformed our operations. We went from constant system issues to a reliable, efficient network that supports our growth. The automated backup system alone has saved us countless hours and given us peace of mind." 
-                    <cite>- Executive Director, FutureMinds Development Initiative</cite>
-                </blockquote>
-
-                <div class="cta-section">
-                    <p><strong>Ready to transform your IT infrastructure?</strong></p>
-                    <a href="#talk-to-me" class="modal-cta-btn">Get Started Today</a>
-                </div>
-            </div>
-        `
-    }
-};
-
-// Modal functions
-function showProjectDetails(detailId) {
-    const modal = document.getElementById('project-modal');
-    const modalBody = document.getElementById('modal-body');
-    
-    if (projectDetails[detailId]) {
-        modalBody.innerHTML = `
-            <h2>${projectDetails[detailId].title}</h2>
-            ${projectDetails[detailId].content}
-        `;
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeModal() {
-    const modal = document.getElementById('project-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// PDF and Google Drive functions
-function openProjectPDF(projectName) {
-    // Opens Google Drive folder for the specific project
-    const driveUrl = 'https://drive.google.com/drive/folders/your-folder-id';
-    window.open(driveUrl, '_blank');
-}
-
-function openGoogleDrive() {
-    // Opens main Google Drive portfolio folder
-    const driveUrl = 'https://drive.google.com/drive/u/0/folders/your-main-folder-id';
-    window.open(driveUrl, '_blank');
-}
-
-function openResumePDF() {
-    // Opens resume PDF from Google Drive
-    const resumeUrl = 'https://drive.google.com/file/d/your-resume-file-id/view';
-    window.open(resumeUrl, '_blank');
-}
-
-// Contact Form Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const firstName = formData.get('firstName');
-            const lastName = formData.get('lastName');
-            const email = formData.get('email');
-            const message = formData.get('message');
-
-            // Show loading state
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-
-            // Create mailto link with form data
-            const subject = `Portfolio Inquiry from ${firstName} ${lastName}`;
-            const body = `Name: ${firstName} ${lastName}\nEmail: ${email}\n\nMessage:\n${message}`;
-            const mailtoLink = `mailto:olamilekan9194@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            // Open email client
-            window.location.href = mailtoLink;
-
-            // Show success message
-            setTimeout(() => {
-                formStatus.innerHTML = `
-                    <div class="success-message">
-                        <i class="fas fa-check-circle"></i>
-                        <p>Your email client should now be open with your message. If it didn't open automatically, please send an email to <strong>olamilekan9194@gmail.com</strong> with your inquiry.</p>
-                    </div>
-                `;
-                
-                // Reset form
-                contactForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Hide success message after 10 seconds
-                setTimeout(() => {
-                    formStatus.innerHTML = '';
-                }, 10000);
-            }, 1000);
-        });
-    }
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('project-modal');
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeModal();
-    }
-});
-
 // Particle effect for hero section
 function createParticles() {
     const hero = document.querySelector('.hero');
-    if (hero) {
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.style.cssText = `
-                position: absolute;
-                width: 2px;
-                height: 2px;
-                background: rgba(212, 175, 55, 0.3);
-                border-radius: 50%;
-                left: ${Math.random() * 100}%;
-                top: ${Math.random() * 100}%;
-                animation: float ${3 + Math.random() * 4}s infinite linear;
-                pointer-events: none;
-            `;
-            hero.appendChild(particle);
-        }
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: float ${3 + Math.random() * 4}s infinite linear;
+            pointer-events: none;
+        `;
+        hero.appendChild(particle);
     }
 }
 
@@ -656,8 +566,12 @@ document.querySelectorAll('.contact-card').forEach(card => {
             window.open('https://linkedin.com/in/nurudeen-olalere', '_blank');
         } else if (title === 'Phone') {
             window.location.href = 'tel:+2347045608751';
+        } else if (title === 'Upwork Profile') {
+            window.open('https://www.upwork.com/freelancers/~019b945a107bea2534', '_blank');
+        } else if (title === 'Resume') {
+            // You can replace this with your actual resume PDF link
+            window.open('https://drive.google.com/file/d/YOUR_RESUME_FILE_ID/view', '_blank');
         }
-        // Portfolio Files and Resume clicks are handled by their respective onclick attributes
     });
 });
 
@@ -729,4 +643,117 @@ document.addEventListener('DOMContentLoaded', function() {
             if (placeholder) placeholder.style.opacity = '1';
         }
     }
+
+    // Initialize modal functionality
+    initializeModal();
 });
+
+// Initialize modal functionality
+function initializeModal() {
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.querySelector('.close');
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+    
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            modal.style.display = 'none';
+        }
+    });
+}
+
+// Form validation
+function validateForm() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if (!firstName || !lastName) {
+        alert('Please enter both first and last name.');
+        return false;
+    }
+    
+    if (!email || !isValidEmail(email)) {
+        alert('Please enter a valid email address.');
+        return false;
+    }
+    
+    if (!message || message.length < 10) {
+        alert('Please enter a message with at least 10 characters.');
+        return false;
+    }
+    
+    return true;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Enhanced form submission with validation
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Create email body
+            const emailBody = `Name: ${firstName} ${lastName}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:olamilekan9194@gmail.com?subject=Portfolio Contact Form - ${firstName} ${lastName}&body=${emailBody}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+            submitBtn.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = 'linear-gradient(45deg, #d4af37, #b8860b)';
+                this.reset();
+            }, 3000);
+        });
+    }
+});
+
+// Google Drive integration helper function
+function openProjectFiles(projectType) {
+    // Replace these with your actual Google Drive folder IDs
+    const driveLinks = {
+        'b2b-leads': 'https://drive.google.com/file/d/18B40ttVYhsTUIfzVLT9jvNu-eAUOadMj/view?usp=sharing',
+        'job-automation': 'https://drive.google.com/file/d/1ZC4wxD5hachN6u9FZBtBHRZucreoQ3Rl/view?usp=sharing',
+        'fundraising': 'https://docs.google.com/document/d/1AnuNFpV2LPxw7GX9r3pa3lCEN8LwZBuy7tVizd_dJ94/edit?usp=sharing',
+        'it-infrastructure': 'https://docs.google.com/document/d/1AnuNFpV2LPxw7GX9r3pa3lCEN8LwZBuy7tVizd_dJ94/edit?usp=sharing'
+    };
+    
+    const link = driveLinks[projectType] || 'https://drive.google.com/file/d/1VvUkdvyv5L8rMadVbOak9zddYNz3yCUj/view?usp=sharing';
+    window.open(link, '_blank');
+}
