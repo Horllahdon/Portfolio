@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">ON Portfolio</div>
@@ -18,14 +17,13 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#talk-to-me">Talk To Me</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <!-- Profile Picture Container -->
             <div class="profile-picture">
                 <img src="profile.jpg" alt="Olalere Nurudeen" id="profileImg">
                 <div class="profile-placeholder">
@@ -39,7 +37,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
     <section class="stats-section">
         <div class="container">
             <div class="stats-grid">
@@ -63,7 +60,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="skills-section">
         <div class="container">
             <h2 class="section-title">Technical Expertise</h2>
@@ -138,7 +134,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects-section">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
@@ -170,7 +165,7 @@
 
                     <div class="project-links">
                         <a href="https://www.upwork.com/freelancers/~019b945a107bea2534?p=1876582413183168512" class="project-link primary-link" target="_blank">View Project</a>
-                        <button class="project-link secondary-link" onclick="openProjectModal('b2b-lead-generation')">Get Details</button>
+                        <a href="YOUR_B2B_DETAILS_LINK_HERE" class="project-link secondary-link" target="_blank">Get Details</a>
                     </div>
                 </div>
 
@@ -198,8 +193,8 @@
                     </div>
 
                     <div class="project-links">
-                        <button class="project-link primary-link" onclick="openProjectModal('job-application-system')">Case Study</button>
-                        <button class="project-link secondary-link" onclick="openProjectModal('job-application-methodology')">Methodology</button>
+                        <a href="YOUR_JOB_APP_CASE_STUDY_LINK_HERE" class="project-link primary-link" target="_blank">Case Study</a>
+                        <a href="YOUR_JOB_APP_METHODOLOGY_LINK_HERE" class="project-link secondary-link" target="_blank">Methodology</a>
                     </div>
                 </div>
 
@@ -227,8 +222,8 @@
                     </div>
 
                     <div class="project-links">
-                        <button class="project-link primary-link" onclick="openProjectModal('fundraising-event')">Event Details</button>
-                        <button class="project-link secondary-link" onclick="openProjectModal('planning-process')">Planning Process</button>
+                        <a href="YOUR_EVENT_DETAILS_LINK_HERE" class="project-link primary-link" target="_blank">Event Details</a>
+                        <a href="YOUR_EVENT_PLANNING_PROCESS_LINK_HERE" class="project-link secondary-link" target="_blank">Planning Process</a>
                     </div>
                 </div>
 
@@ -256,15 +251,14 @@
                     </div>
 
                     <div class="project-links">
-                        <button class="project-link primary-link" onclick="openProjectModal('it-infrastructure')">Technical Details</button>
-                        <button class="project-link secondary-link" onclick="openProjectModal('it-results')">Results</button>
+                        <a href="YOUR_IT_TECHNICAL_DETAILS_LINK_HERE" class="project-link primary-link" target="_blank">Technical Details</a>
+                        <a href="YOUR_IT_RESULTS_LINK_HERE" class="project-link secondary-link" target="_blank">Results</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Timeline -->
     <section id="experience" class="experience-section">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
@@ -319,7 +313,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
             <h2 class="section-title">Let's Connect</h2>
@@ -363,33 +356,6 @@
                 </div>
             </div>
 
-            <!-- Talk To Me Section -->
-            <div class="talk-to-me-section">
-                <h2 class="section-title">Talk To Me</h2>
-                <p class="section-subtitle">Send me a message directly</p>
-                
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i>
-                        Send Message
-                    </button>
-                </form>
-            </div>
-
             <div style="margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
                 <h3 style="margin-bottom: 1rem;">Currently Seeking</h3>
                 <p style="font-size: 1.1rem; margin-bottom: 1rem;">Data Analytics Internship Opportunities</p>
@@ -397,16 +363,35 @@
             </div>
         </div>
     </section>
-
-    <!-- Project Modal -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modalContent"></div>
+    
+    <section id="talk-to-me" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Talk To Me</h2>
+            <p class="section-subtitle">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+            <form id="contact-form" action="https://formspree.io/f/" method="POST">
+                <div class="form-group">
+                    <div class="form-field half">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="firstName" required>
+                    </div>
+                    <div class="form-field half">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
         </div>
-    </div>
+    </section>
 
-    <!-- Floating Action Button -->
     <div class="fab" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </div>
