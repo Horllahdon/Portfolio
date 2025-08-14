@@ -169,8 +169,8 @@
                     </div>
 
                     <div class="project-links">
-                        <a href="https://www.upwork.com/freelancers/~019b945a107bea2534?p=1876582413183168512" class="project-link primary-link" target="_blank">View Project</a>
-                        <a href="#contact" class="project-link secondary-link">Get Details</a>
+                        <button class="project-link primary-link" onclick="openProjectDetails('b2b-lead')">View Project</button>
+                        <button class="project-link secondary-link" onclick="openProjectDetails('b2b-details')">Get Details</button>
                     </div>
                 </div>
 
@@ -198,8 +198,8 @@
                     </div>
 
                     <div class="project-links">
-                        <a href="#contact" class="project-link primary-link">Case Study</a>
-                        <a href="#contact" class="project-link secondary-link">Methodology</a>
+                        <button class="project-link primary-link" onclick="openProjectDetails('job-case')">Case Study</button>
+                        <button class="project-link secondary-link" onclick="openProjectDetails('job-methodology')">Methodology</button>
                     </div>
                 </div>
 
@@ -227,8 +227,8 @@
                     </div>
 
                     <div class="project-links">
-                        <a href="#contact" class="project-link primary-link">Event Details</a>
-                        <a href="#contact" class="project-link secondary-link">Planning Process</a>
+                        <button class="project-link primary-link" onclick="openProjectDetails('event-details')">Event Details</button>
+                        <button class="project-link secondary-link" onclick="openProjectDetails('event-planning')">Planning Process</button>
                     </div>
                 </div>
 
@@ -256,8 +256,8 @@
                     </div>
 
                     <div class="project-links">
-                        <a href="#contact" class="project-link primary-link">Technical Details</a>
-                        <a href="#contact" class="project-link secondary-link">Results</a>
+                        <button class="project-link primary-link" onclick="openProjectDetails('it-technical')">Technical Details</button>
+                        <button class="project-link secondary-link" onclick="openProjectDetails('it-results')">Results</button>
                     </div>
                 </div>
             </div>
@@ -370,6 +370,51 @@
             </div>
         </div>
     </section>
+
+    <!-- Talk To Me Section -->
+    <section class="talk-to-me-section">
+        <div class="container">
+            <h2 class="section-title">Talk To Me</h2>
+            <p class="section-subtitle">Have a project in mind? Let's discuss how I can help you achieve your goals.</p>
+            
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Tell me about your project or how I can help you..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProjectModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
 
     <!-- Floating Action Button -->
     <div class="fab" onclick="scrollToTop()">
