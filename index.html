@@ -18,6 +18,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#talk-to-me">Talk To Me</a></li>
             </ul>
         </div>
     </nav>
@@ -169,8 +170,8 @@
                     </div>
 
                     <div class="project-links">
-                        <button class="project-link primary-link" onclick="openProjectDetails('b2b-lead')">View Project</button>
-                        <button class="project-link secondary-link" onclick="openProjectDetails('b2b-details')">Get Details</button>
+                        <a href="javascript:void(0)" class="project-link primary-link" onclick="openProjectPDF('b2b-lead-generation')">View Project</a>
+                        <a href="javascript:void(0)" class="project-link secondary-link" onclick="showProjectDetails('b2b-details')">Get Details</a>
                     </div>
                 </div>
 
@@ -198,8 +199,8 @@
                     </div>
 
                     <div class="project-links">
-                        <button class="project-link primary-link" onclick="openProjectDetails('job-case')">Case Study</button>
-                        <button class="project-link secondary-link" onclick="openProjectDetails('job-methodology')">Methodology</button>
+                        <a href="javascript:void(0)" class="project-link primary-link" onclick="showProjectDetails('job-case-study')">Case Study</a>
+                        <a href="javascript:void(0)" class="project-link secondary-link" onclick="showProjectDetails('job-methodology')">Methodology</a>
                     </div>
                 </div>
 
@@ -227,8 +228,8 @@
                     </div>
 
                     <div class="project-links">
-                        <button class="project-link primary-link" onclick="openProjectDetails('event-details')">Event Details</button>
-                        <button class="project-link secondary-link" onclick="openProjectDetails('event-planning')">Planning Process</button>
+                        <a href="javascript:void(0)" class="project-link primary-link" onclick="showProjectDetails('event-details')">Event Details</a>
+                        <a href="javascript:void(0)" class="project-link secondary-link" onclick="showProjectDetails('planning-process')">Planning Process</a>
                     </div>
                 </div>
 
@@ -256,13 +257,21 @@
                     </div>
 
                     <div class="project-links">
-                        <button class="project-link primary-link" onclick="openProjectDetails('it-technical')">Technical Details</button>
-                        <button class="project-link secondary-link" onclick="openProjectDetails('it-results')">Results</button>
+                        <a href="javascript:void(0)" class="project-link primary-link" onclick="showProjectDetails('tech-details')">Technical Details</a>
+                        <a href="javascript:void(0)" class="project-link secondary-link" onclick="showProjectDetails('it-results')">Results</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
 
     <!-- Experience Timeline -->
     <section id="experience" class="experience-section">
@@ -344,10 +353,10 @@
                     <p>+234 704 560 8751</p>
                 </div>
 
-                <div class="contact-card fade-in">
+                <div class="contact-card fade-in" onclick="openGoogleDrive()">
                     <div class="contact-icon"><i class="fas fa-briefcase"></i></div>
-                    <h3>Upwork Profile</h3>
-                    <p>View my portfolio & client reviews</p>
+                    <h3>Portfolio Files</h3>
+                    <p>View my complete portfolio</p>
                 </div>
 
                 <div class="contact-card fade-in">
@@ -356,7 +365,7 @@
                     <p>Ibadan, Oyo State, Nigeria</p>
                 </div>
 
-                <div class="contact-card fade-in">
+                <div class="contact-card fade-in" onclick="openResumePDF()">
                     <div class="contact-icon"><i class="fas fa-download"></i></div>
                     <h3>Resume</h3>
                     <p>Download detailed CV</p>
@@ -372,49 +381,40 @@
     </section>
 
     <!-- Talk To Me Section -->
-    <section class="talk-to-me-section">
+    <section id="talk-to-me" class="talk-to-me-section">
         <div class="container">
             <h2 class="section-title">Talk To Me</h2>
-            <p class="section-subtitle">Have a project in mind? Let's discuss how I can help you achieve your goals.</p>
-            
+            <p class="section-subtitle">Let's discuss how I can help optimize your business operations</p>
+
             <div class="contact-form-container">
-                <form class="contact-form" id="contactForm">
+                <form id="contact-form" class="contact-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName">First Name</label>
+                            <label for="firstName">First Name *</label>
                             <input type="text" id="firstName" name="firstName" required>
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name</label>
+                            <label for="lastName">Last Name *</label>
                             <input type="text" id="lastName" name="lastName" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email">Email Address *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="6" placeholder="Tell me about your project or how I can help you..." required></textarea>
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project requirements, goals, or how I can assist you..."></textarea>
                     </div>
                     <button type="submit" class="submit-btn">
                         <i class="fas fa-paper-plane"></i>
                         Send Message
                     </button>
                 </form>
+                <div id="form-status" class="form-status"></div>
             </div>
         </div>
     </section>
-
-    <!-- Project Details Modal -->
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeProjectModal()">&times;</span>
-            <div id="modalContent">
-                <!-- Content will be loaded here -->
-            </div>
-        </div>
-    </div>
 
     <!-- Floating Action Button -->
     <div class="fab" onclick="scrollToTop()">
