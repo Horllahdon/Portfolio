@@ -86,7 +86,7 @@ body {
     padding: 0 2rem;
 }
 
-/* Profile Picture Styles - CORRECTION POINT */
+/* Profile Picture Styles - FIXED VERSION */
 .profile-picture {
     position: relative;
     width: 180px;
@@ -117,12 +117,19 @@ body {
     justify-content: center;
     font-size: 4rem;
     color: #d4af37;
-    opacity: 1;
+    opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
-.profile-picture img[src="profile.jpg"] + .profile-placeholder,
-.profile-picture img:not([src=""]) + .profile-placeholder {
+/* Show placeholder only when image fails to load or has no src */
+.profile-picture img[src=""] + .profile-placeholder,
+.profile-picture img[src="profile.jpg"] + .profile-placeholder {
+    opacity: 1;
+}
+
+/* Hide placeholder when image loads successfully */
+.profile-picture img.loaded + .profile-placeholder {
     opacity: 0;
 }
 

@@ -196,7 +196,7 @@ if (statsSection) {
     statsObserver.observe(statsSection);
 }
 
-// Profile picture error handling and fallback - CORRECTION POINT
+// Profile picture error handling and fallback - FIXED VERSION
 document.addEventListener('DOMContentLoaded', function() {
     // IMMEDIATE CONTENT VISIBILITY FIX
     const allElements = document.querySelectorAll('.stat-item, .skill-card, .project-card, .timeline-item, .contact-card, .fade-in');
@@ -210,23 +210,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileImg = document.getElementById('profileImg');
     const placeholder = document.querySelector('.profile-placeholder');
     
-    if (profileImg) {
-        profileImg.addEventListener('error', function() {
-            // If image fails to load, show placeholder
-            this.style.display = 'none';
-            if (placeholder) placeholder.style.opacity = '1';
-        });
-        
-        profileImg.addEventListener('load', function() {
-            // If image loads successfully, hide placeholder
-            if (placeholder) placeholder.style.opacity = '0';
-        });
-        
-        // Check if image source exists
-        if (!profileImg.src || profileImg.src.includes('profile.jpg')) {
-            // If no valid source, show placeholder
+    if (profileImg && placeholder) {
+        // Function to show image and hide placeholder
+        function showImage() {
+            profileImg.style.display = 'block';
+            profileImg.classList.add('loaded');
+            placeholder.style.opacity = '0';
+        }
+
+        // Function to hide image and show placeholder
+        function showPlaceholder() {
             profileImg.style.display = 'none';
-            if (placeholder) placeholder.style.opacity = '1';
+            profileImg.classList.remove('loaded');
+            placeholder.style.opacity = '1';
+        }
+
+        // Check if image loads successfully
+        profileImg.addEventListener('load', function() {
+            if (this.complete && this.naturalWidth > 0) {
+                showImage();
+            }
+        });
+        
+        // If image fails to load, show placeholder
+        profileImg.addEventListener('error', function() {
+            showPlaceholder();
+        });
+        
+        // Initial check - if image src is empty or default, show placeholder
+        if (!profileImg.src || 
+            profileImg.src.endsWith('profile.jpg') || 
+            profileImg.src === '' ||
+            profileImg.src === window.location.href.replace(/[^/]*$/, '') + 'profile.jpg') {
+            showPlaceholder();
+        } else {
+            // Image has a valid src, try to load it
+            if (profileImg.complete) {
+                if (profileImg.naturalWidth > 0) {
+                    showImage();
+                } else {
+                    showPlaceholder();
+                }
+            }
         }
     }
 });
