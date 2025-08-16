@@ -154,7 +154,7 @@ document.querySelectorAll('.contact-card').forEach(card => {
         } else if (title === 'Upwork Profile') {
             window.open('https://www.upwork.com/freelancers/~019b945a107bea2534', '_blank');
         } else if (title === 'Resume') {
-            window.open('YOUR_RESUME_PDF_LINK_HERE', '_blank');
+            window.open('https://drive.google.com/file/d/1VvUkdvyv5L8rMadVbOak9zddYNz3yCUj/view?usp=sharing', '_blank');
         }
     });
 });
