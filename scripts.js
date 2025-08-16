@@ -141,10 +141,12 @@ timelineItems.forEach((item, index) => {
     item.style.animationDelay = `${index * 0.2}s`;
 });
 
-// Enhanced contact card interactions
+// FIXED: Enhanced contact card interactions with proper URL handling
 document.querySelectorAll('.contact-card').forEach(card => {
     card.addEventListener('click', function() {
-        const title = this.querySelector('h3').textContent;
+        const title = this.querySelector('h3').textContent.trim();
+        console.log('Clicked card title:', title); // Debug log
+        
         if (title === 'Email') {
             window.location.href = 'mailto:olamilekan9194@gmail.com';
         } else if (title === 'LinkedIn') {
