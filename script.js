@@ -105,27 +105,89 @@ function createParticles() {
             border-radius: 50%;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
-            animation: moveParticle ${Math.random() * 10 + 10}s linear infinite;
+            animation: float ${3 + Math.random() * 4}s infinite linear;
+            pointer-events: none;
         `;
         hero.appendChild(particle);
     }
 }
+
+// Add CSS for particle animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes float {
+        0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize particles
 createParticles();
 
-// Stats section animation
-const statsObserverOptions = {
-    threshold: 0.5
-};
+// Add click tracking for analytics
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('project-link') || 
+        e.target.classList.contains('cta-button')) {
+        console.log(`Portfolio Click: ${e.target.textContent} - ${new Date().toISOString()}`);
+    }
+});
 
-const statsObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            document.querySelectorAll('.stat-item').forEach(stat => {
-                stat.classList.add('visible');
-            });
+// Add professional animations to timeline items
+const timelineItems = document.querySelectorAll('.timeline-item');
+timelineItems.forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.2}s`;
+});
+
+// Enhanced contact card interactions
+document.querySelectorAll('.contact-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const title = this.querySelector('h3').textContent;
+        if (title === 'Email') {
+            window.location.href = 'mailto:olamilekan9194@gmail.com';
+        } else if (title === 'LinkedIn') {
+            window.open('https://linkedin.com/in/nurudeen-olalere', '_blank');
+        } else if (title === 'Phone') {
+            window.location.href = 'tel:+2347045608751';
+        } else if (title === 'Upwork Profile') {
+            window.open('https://www.upwork.com/freelancers/~019b945a107bea2534', '_blank');
+        } else if (title === 'Resume') {
+            window.open('https://drive.google.com/file/d/1VvUkdvyv5L8rMadVbOak9zddYNz3yCUj/view?usp=sharing', '_blank');
         }
     });
-}, statsObserverOptions);
+});
+
+// Add loading animation for stats
+const stats = document.querySelectorAll('.stat-number');
+const animateStats = () => {
+    stats.forEach(stat => {
+        const target = parseInt(stat.textContent.replace(/\D/g, ''));
+        const suffix = stat.textContent.replace(/[0-9]/g, '');
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                stat.textContent = target + suffix;
+                clearInterval(timer);
+            } else {
+                stat.textContent = Math.floor(current) + suffix;
+            }
+        }, 30);
+    });
+};
+
+// Trigger stats animation when section comes into view
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateStats();
+            statsObserver.unobserve(entry.target);
+        }
+    });
+});
 
 const statsSection = document.querySelector('.stats-section');
 if (statsSection) {
